@@ -1,21 +1,23 @@
 import os
-from openai import OpenAI
 from dotenv import load_dotenv, find_dotenv
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import HumanMessage
 
+# 加载环境变量
 _ = load_dotenv(find_dotenv())
-api_key = os.environ['OPENAI_API_KEY']
 
-client = OpenAI(
-    base_url='https://xiaoai.plus/v1',
-    api_key=api_key,
+# 初始化LangChain的ChatOpenAI客户端
+chat = ChatOpenAI(
+    model="gpt-3.5-turbo",
+    temperature=0,
+    base_url="https://xiaoai.plus/v1",
+    api_key=os.getenv('OPENAI_API_KEY')
 )
 
-def get_completion(prompt, model="gpt-3.5-turbo"):
-    response = client.chat.completions.create(
-        model=model,
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0
-    )
-    return response.choices[0].message.content
+def get_completion(prompt: str, model: str = "gpt-3.5-turbo") -> str:
+    response = chat.invoke([HumanMessage(content=prompt)])
+    return response.content
 
-print(get_completion("What is 1+1?"))
+# 测试调用
+if __name__ == "__main__":
+    print(get_completion("What is 1+1?"))
