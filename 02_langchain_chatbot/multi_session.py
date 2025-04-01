@@ -23,7 +23,7 @@ class SessionManager:
     def get_all_sessions(self):
         return self.sessions
 
-# 初始化会话管理器
+# Initialize session manager
 session_manager = SessionManager()
 
 _ = load_dotenv(find_dotenv())
@@ -48,6 +48,7 @@ chat_model = RunnableWithMessageHistory(
     history_messages_key="history"
 )
 
+# First message in session A
 response = chat_model.invoke(
     {"input": "Hi! I'm Alice"},
     config={"configurable": {"session_id": "user_a"}}
@@ -55,7 +56,7 @@ response = chat_model.invoke(
 print("user: Hi! I'm Alice")
 print(f"AI: {response.content}")
 
-# 同一会话记住上下文
+# Follow-up in same session (should remember context)
 response = chat_model.invoke(
     {"input": "What's my name?"},
     config={"configurable": {"session_id": "user_a"}}
@@ -63,7 +64,7 @@ response = chat_model.invoke(
 print("user: What's my name?")
 print(f"AI: {response.content}")
 
-# 完全隔离
+# New isolated session (shouldn't know the name)
 response = chat_model.invoke(
     {"input": "What's my name?"},
     config={"configurable": {"session_id": "user_b"}}
