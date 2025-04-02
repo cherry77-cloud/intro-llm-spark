@@ -140,7 +140,7 @@ if __name__ == "__main__":
     demo_queries = [
         "Generate an image of a futuristic city at night",
         "What's my current location?",
-        "What's the weather in BeiJing?",
+        "What's the weather in 北京?",
         "Find the latest news about Mars exploration",
         "Calculate 15% of 880",
         "What's the location of IP 8.8.8.8?",
