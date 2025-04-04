@@ -65,7 +65,8 @@ llm = ChatOpenAI(
 
 # 7. Create prompt template with improved instructions
 template = """
-Please answer the question based on the following context. If the context doesn't contain relevant information, say "I don't have enough information to answer this question."
+Please answer the question based on the following context. If the context doesn't contain relevant information, say 
+"I don't have enough information to answer this question."
 
 Question: 
 {question}
