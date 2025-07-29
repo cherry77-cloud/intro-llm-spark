@@ -43,7 +43,8 @@ class Decoder(nn.Module):
             x = self.layers[i](x, e_outputs, src_mask, trg_mask)
         return self.norm(x)
 
-   
+
+# https://nlp.seas.harvard.edu/annotated-transformer/
 class Transformer(nn.Module):
     def __init__(self, src_vocab, trg_vocab, d_model, N, heads, dropout):
         super().__init__()
