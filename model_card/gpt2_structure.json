@@ -1,0 +1,30 @@
+{
+    "GPT2LMHeadModel": {
+        "transformer": {
+            "wte": "Embedding(50257, 768)",
+            "wpe": "Embedding(1024, 768)",
+            "drop": "Dropout(p=0.1)",
+            "h": [
+                "12 x GPT2Block",
+                {
+                    "ln_1": "LayerNorm(768, eps=1e-5)",
+                    "attn": {
+                        "c_attn": "Conv1D(2304, 768)",
+                        "c_proj": "Conv1D(768, 768)",
+                        "attn_dropout": "Dropout(p=0.1)",
+                        "resid_dropout": "Dropout(p=0.1)"
+                    },
+                    "ln_2": "LayerNorm(768, eps=1e-5)",
+                    "mlp": {
+                        "c_fc": "Conv1D(3072, 768)",
+                        "c_proj": "Conv1D(768, 3072)",
+                        "act": "NewGELUActivation()",
+                        "dropout": "Dropout(p=0.1)"
+                    }
+                }
+            ],
+            "ln_f": "LayerNorm(768, eps=1e-5)"
+        },
+        "lm_head": "Linear(768, 50257, bias=False)"
+    }
+}
