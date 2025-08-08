@@ -1,0 +1,29 @@
+{
+  "LlamaForCausalLM": {
+    "model": {
+      "embed_tokens": "Embedding(32000, 4096, padding_idx=0)",
+      "layers": [
+        "32 x LlamaDecoderLayer",
+        {
+          "self_attn": {
+            "q_proj": "Linear(4096, 4096, bias=False)",
+            "k_proj": "Linear(4096, 4096, bias=False)",
+            "v_proj": "Linear(4096, 4096, bias=False)",
+            "o_proj": "Linear(4096, 4096, bias=False)"
+          },
+          "mlp": {
+            "gate_proj": "Linear(4096, 11008, bias=False)",
+            "up_proj": "Linear(4096, 11008, bias=False)",
+            "down_proj": "Linear(11008, 4096, bias=False)",
+            "act_fn": "SiLU()"
+          },
+          "input_layernorm": "LlamaRMSNorm(4096, eps=1e-05)",
+          "post_attention_layernorm": "LlamaRMSNorm(4096, eps=1e-05)"
+        }
+      ],
+      "norm": "LlamaRMSNorm(4096, eps=1e-05)",
+      "rotary_emb": "LlamaRotaryEmbedding()"
+    },
+    "lm_head": "Linear(4096, 32000, bias=False)"
+  }
+}
